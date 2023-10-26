@@ -1,0 +1,97 @@
+---
+title: "Untitled"
+format: html
+editor: visual
+---
+
+```{r, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(abjData)
+extrafont::loadfonts("win")
+```
+
+```{r, message=FALSE, warning=FALSE, results='hide'}
+df <- abjData::pnud_min
+
+shape <- geobr::read_municipality()
+
+df_shape <- shape |>
+  mutate(code_muni = as.character(code_muni)) |>
+  left_join(df, by = c("code_muni" = "muni_id"))
+```
+
+```{r, message=FALSE, warning=FALSE, fig.align='center', fig.height=10, fig.width=20, }
+df_shape |>
+  drop_na() |>
+  ggplot() +
+  geom_sf(aes(fill = idhm_e), color = "transparent") +
+  facet_wrap(facets = vars(ano)) +
+  scale_fill_viridis_c(guide = guide_legend(keywidth = unit(10, units = "mm"),
+                                            nrow = 1,
+                                            ncol = 16,
+                                            label.position = "top",
+                                            title.position = "top",
+                                            reverse = FALSE,
+                                            byrow = FALSE),
+                       breaks = seq(0, 1, by = 0.1)) +
+  theme_classic() +
+  labs(
+    title = "Índice de Desenvolvimento Humano - Educação",
+    subtitle = "Mapa do IDHM -E dos municípios brasileiros em 1991, 2000 e 2010",
+    caption = "PNUD Brasil | Atlas do Desenvolvimento Humano dos Municípios",
+    fill = ""
+  ) +
+  theme(
+    # Texto do título
+    plot.title = element_text(color = "#4e4d47",
+                              size= 14,
+                              face = "bold",
+                              family = "Calibri",
+                              hjust = 0),
+    # Texto do subtítulo
+    plot.subtitle = element_text(color = "#4e4d47",
+                                 size= 14,
+                                 family = "Calibri",
+                                 hjust = 0),
+    # Texto da fonte
+    plot.caption = element_text(color = "#4e4d47",
+                                size=12,
+                                hjust = 0,
+                                vjust = 2),
+    # Texto da legenda
+    #legend.title = element_text(size= 12,
+    #                            face = "bold",
+    #                            color = "#FC0035",
+    #                            family = "Calibri"),
+    # Fundo dos mapas
+    plot.background = element_rect(fill = "#f5f5f2", colour = NA),
+    # Fundo do painel
+    panel.background = element_rect(fill = "#f5f5f2", colour = NA),
+    # Fundo da legenda
+    legend.background = element_rect(fill = "transparent", colour = NA),
+    # Posição da legenda no mapa c(horizontal, vertical)
+    legend.position = c(.5, .01),
+    # Direção da legenda
+    legend.direction = "horizontal",
+    # Texto da legenda
+    legend.text = element_text(size = 11,
+                               face = "bold",
+                               family = "Calibri",
+                               colour = "#4e4d47"),
+    # Textos do facet (1991, 2000 e 2010)
+    strip.text = element_text(size = 12,
+                              family = "Calibri",
+                              colour = "#f5f5f2",
+                              face = "bold"),
+    # "Caixinhas" do facet
+    strip.background = element_rect(colour = "transparent",
+                                    fill = "#919191"),
+    # Textos das linhas das coordenadas
+    axis.text = element_blank(),
+    # Linhas das coordenadas
+    axis.line = element_blank(),
+    # "Tracinhos" das linhas das coordenadas
+    axis.ticks = element_blank()
+  )
+```
+
