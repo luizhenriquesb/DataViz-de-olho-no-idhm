@@ -11,7 +11,7 @@ editor: visual
 
 O presente relatório apresenta o processo de criação de uma visualização gráfica sobre o Índice de Desenvolvimento Humano (IDHM) do Brasil. Os datasets utilizados contém uma série de indicadores sobre os municípios brasileiros nos anos de 1991, 2000 e 2010.
 
-Esses indicadores estão originalmente disponíveis no Atlas do Desenvolvimento Humano no Brasil. No entanto, a equipe da Associação Brasileira de Jurimetria facilita o acesso a esses dados através do pacote `abjData`.
+Esses indicadores estão originalmente disponíveis no Atlas do Desenvolvimento Humano no Brasil. Felizmente, a equipe da Associação Brasileira de Jurimetria facilita o acesso a esses dados através do pacote `abjData`.
 
 A ideia geral é somente explorar alguns recursos de visualização de dados disponíveis em R, utilizando sobretudo o pacote `ggplot2`.
 
