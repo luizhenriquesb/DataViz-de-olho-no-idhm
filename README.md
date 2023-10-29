@@ -2,7 +2,7 @@
 
 <p align="justify"> 
   
-  Esse repositório armazena um projeto de visualização de dados sobre o Índice de Desenvolvimento Humano dos municípios brasileiros ao longos dos anos de 1991, 2000 e 2010. Foram utilizados dados do [**Atlas do Desenvolvimento Humano no Brasil**](<http://www.atlasbrasil.org.br/>). A equipe de dados da Associação Brasileira de Jurimetria facilita o acesso a esses indicadores através do pacote {abjData}, disponível em R. </p>
+  Esse repositório armazena um projeto de visualização de dados sobre o Índice de Desenvolvimento Humano dos municípios brasileiros ao longo dos anos de 1991, 2000 e 2010. Foram utilizados dados do [**Atlas do Desenvolvimento Humano no Brasil**](<http://www.atlasbrasil.org.br/>). A equipe da Associação Brasileira de Jurimetria facilita o acesso a esses indicadores através do pacote {abjData}, disponível em R. </p>
 
 <p align="justify"> 
   
