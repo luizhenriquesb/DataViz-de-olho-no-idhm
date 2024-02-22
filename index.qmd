@@ -7,6 +7,7 @@ editor: visual
 ---
 
 ::: {style="text-align: justify"}
+
 ## Introdução
 
 O presente relatório apresenta o processo de criação de uma visualização gráfica sobre o Índice de Desenvolvimento Humano (IDHM) do Brasil. Os datasets utilizados contém uma série de indicadores sobre os municípios brasileiros nos anos de 1991, 2000 e 2010.
@@ -17,7 +18,7 @@ A ideia geral é somente explorar alguns recursos de visualização de dados dis
 
 ### Pacotes utilizados
 
-```{r, message=FALSE, results='hide'}
+```{r, warning = FALSE, message=FALSE, results='hide'}
 library(tidyverse)
 library(geobr)
 library(abjData)
@@ -27,7 +28,7 @@ extrafont::loadfonts("win")
 
 ### Importação das bases de dados
 
-```{r, message=FALSE, results='hide'}
+```{r, warning = FALSE, message=FALSE, results='hide'}
 # Dataset com os indicadores de desenvolvimento humano por município
 df <- abjData::pnud_min
 
@@ -49,7 +50,7 @@ Para apresentar a evolução do IDHM dos municípios brasileiros, ao longo dos a
 
 Vamos, primeiro, plotar o básico. No código abaixo, iniciamos o `ggplot`, definimos a geometria e já passamos o argumento `facet_wrap` para construir um mapa para cada ano.
 
-```{r, fig.align='center'}
+```{r, warning = FALSE, fig.align='center'}
 df_shape |>
   ggplot() +
   # Geometria para mapas
@@ -60,7 +61,7 @@ df_shape |>
 p1
 ```
 
-```{r, municipiosNA}
+```{r, warning = FALSE}
 # Criando objeto com o nome dos municípios com NA
 muni_NA <- df_shape |>
   filter(is.na(ano)) |> pull(name_muni)
@@ -72,7 +73,7 @@ Veja que temos alguns municípios em que a informação *ano* está ausente. Os 
 
 Agora, passamos a função `drop_na()` para retirar as observações ausentes. Além disso, também estamos usando o argumento `aes(fill = idhm)` dentro de `geom_sf()`. Essa função preenche os municípios com seus respectivos IDHM.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -94,7 +95,7 @@ Conforme o contorno dos municípios dificulta a visualização do IDHM em determ
 
 O argumento `colour` dentro de `geom_sf()` lida com o contorno das geometrias. No caso, decidimos deixar o contorno dos municípios transparente.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -116,7 +117,7 @@ p3
 
 Aqui, decidimos já usar uma tema pronto. A função `theme_classic()` faz algumas alterações que achamos interessante.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -142,7 +143,7 @@ Perceba que nossos mapas ganharam um aspecto mais minimalista com a redução de
 
 Vamos, agora, adicionar informações textuais usando a função `labs()`.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -177,7 +178,7 @@ Para os nossos propósitos, decidimos adicionar somente título, subtítulo e le
 
 Daqui em diante, a função `theme()`será extensamente utilizada. Essa função permite "to costumize the non-data components of your plots" (`?theme`).
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -238,7 +239,7 @@ Para começar, fizemos algumas alterações no título, subtítulo e fonte. Muda
 
 Ainda utilizando a função `theme()`, vamos modificar o fundo dos mapas, do painel e da legenda.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -317,7 +318,7 @@ p7
 
 Alteramos, agora, o texto da legenda e das "caixinhas" que contém os anos. Também alteramos a cor dessas caixinhas.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -414,7 +415,7 @@ p8
 
 Com os argumentos `axis` é possível alterar atributos dos eixos X e Y.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -517,7 +518,7 @@ p9
 
 Decidimos alterar a posição da legenda, deixando-a no centro inferior do gráfico.
 
-```{r, fig.align='center', fig.height=4, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 df_shape |>
   # Removendo NA's
   drop_na() |>
@@ -626,7 +627,7 @@ No próximo passo, vamos fazer algumas alterações na legenda.
 
 Personalizando a legenda e alterando a escala de cores.
 
-```{r, fig.align='center', fig.height=4, fig.width=10, fig.width=10}
+```{r, warning = FALSE, fig.align='center', fig.height=4, fig.width=10}
 p10 +
   # Altera a cor da escala para variáveis contínuas
   scale_fill_viridis_c(guide = guide_legend(
@@ -650,7 +651,7 @@ p11
 
 Para fazer essa animação, basta passar o argumento `fig.show='animate'` no Chunk e printar os gráficos dentro. Foi por isso que salvamos cada nova alteração em um novo objeto.
 
-```{r, echo=FALSE, warning=FALSE, fig.show='animate', fig.s, fig.align='center', fig.height=4, fig.width=10, fig.width=10}
+```{r, warning = FALSE, echo=FALSE, warning=FALSE, fig.show='animate', fig.align='center', fig.height=4, fig.width=10}
 p1
 p2
 p3
