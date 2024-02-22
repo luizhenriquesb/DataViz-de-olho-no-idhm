@@ -410,7 +410,7 @@ df_shape |>
 p8
 ```
 
-### Passo 9 
+### Passo 9
 
 Com os argumentos `axis` é possível alterar atributos dos eixos X e Y.
 
@@ -620,7 +620,7 @@ df_shape |>
 p10
 ```
 
-No próximo passo, vamos fazer algumas alterações na legenda. 
+No próximo passo, vamos fazer algumas alterações na legenda.
 
 ### Passo 11
 
@@ -650,8 +650,7 @@ p11
 
 Para fazer essa animação, basta passar o argumento `fig.show='animate'` no Chunk e printar os gráficos dentro. Foi por isso que salvamos cada nova alteração em um novo objeto.
 
-```{r, fig.show='animate', fig.s, fig.align='center', fig.height=4, fig.width=10, fig.width=10}
-#| echo: false
+```{r, echo=FALSE, fig.show='animate', fig.s, fig.align='center', fig.height=4, fig.width=10, fig.width=10}
 p1
 p2
 p3
@@ -676,5 +675,4 @@ p3
 p2
 p1
 ```
-
 :::
